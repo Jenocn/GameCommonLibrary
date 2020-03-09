@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Base</name>
+    </assembly>
+    <members>
+        <member name="T:GCL.Base.TypeTool">
+            <summary>
+            类型工具
+            </summary>
+        </member>
+        <member name="M:GCL.Base.TypeTool.ToInt(System.String,System.Int32)">
+            <summary>
+            将字符串转换为int类型,失败则返回默认值
+            </summary>
+        </member>
+        <member name="M:GCL.Base.TypeTool.ToLong(System.String,System.Int64)">
+            <summary>
+            将字符串转换为long类型,失败则返回默认值
+            </summary>
+        </member>
+        <member name="M:GCL.Base.TypeTool.ToShort(System.String,System.Int16)">
+            <summary>
+            将字符串转换为short类型,失败则返回默认值
+            </summary>
+        </member>
+        <member name="M:GCL.Base.TypeTool.ToUInt(System.String,System.UInt32)">
+            <summary>
+            将字符串转换为uint类型,失败则返回默认值
+            </summary>
+        </member>
+        <member name="M:GCL.Base.TypeTool.ToFloat(System.String,System.Single)">
+            <summary>
+            将字符串转换为float类型,失败则返回默认值
+            </summary>
+        </member>
+        <member name="M:GCL.Base.TypeTool.ToDouble(System.String,System.Double)">
+            <summary>
+            将字符串转换为double类型,失败则返回默认值
+            </summary>
+        </member>
+        <member name="M:GCL.Base.TypeTool.ToBool(System.String,System.Boolean)">
+            <summary>
+            将字符串转换为bool类型,失败则返回默认值
+            </summary>
+        </member>
+        <member name="T:GCL.Base.RandomTool">
+            <summary>
+            随机数工具
+            </summary>
+        </member>
+        <member name="M:GCL.Base.RandomTool.Range(System.Int32,System.Int32)">
+            <summary>
+            包括min但不包括max
+            </summary>
+        </member>
+        <member name="M:GCL.Base.RandomTool.Hit(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            <para>从min和max中命中value这个数,命中返回true,否则false</para>
+            <para>包括min但不包括max</para>
+            </summary>
+        </member>
+        <member name="M:GCL.Base.RandomTool.Hit(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            <para>从min和max中命中minValue~maxValue这个范围,命中返回true,否则false</para>
+            <para>包括min但不包括max,包括minValue但不包括maxValue</para>
+            </summary>
+        </member>
+        <member name="M:GCL.Base.RandomTool.HitWithPercent(System.Single)">
+            <summary>
+            判断是否命中概率,0~1
+            </summary>
+        </member>
+        <member name="T:GCL.Base.GameDate">
+            <summary>
+            日期类
+            </summary>
+        </member>
+        <member name="M:GCL.Base.GameDate.#ctor(System.Boolean)">
+            <summary>
+            <para>参数:是否支持闰年</para>
+            </summary>
+        </member>
+        <member name="M:GCL.Base.GameDate.GetMaxDayOfMonth">
+            <summary>
+            获取当前月的上限天数
+            </summary>
+        </member>
+        <member name="M:GCL.Base.GameDate.GetMaxDayOfMonth(System.Int32)">
+            <summary>
+            获取本年某个月的上限天数
+            </summary>
+        </member>
+        <member name="M:GCL.Base.GameDate.IsLeapYear">
+            <summary>
+            本年是否是闰年(只有当开启支持闰年的情况下才有效)
+            </summary>
+        </member>
+        <member name="M:GCL.Base.GameDate.NextDay">
+            <summary>
+            前进一天
+            </summary>
+        </member>
+        <member name="M:GCL.Base.GameDate.NextMonth(System.Boolean)">
+            <summary>
+            前进一个月
+            <para>参数表示是否重置天数</para>
+            </summary>
+        </member>
+        <member name="M:GCL.Base.GameDate.NextYear(System.Boolean)">
+            <summary>
+            前进一年
+            <para>参数表示是否重置天数</para>
+            </summary>
+        </member>
+        <member name="T:GCL.Base.ClassTypeCounter`1">
+            <summary>
+            类计数器
+            </summary>
+        </member>
+        <member name="P:GCL.Base.ClassTypeCounter`1.count">
+            <summary>
+            当前计数数值
+            </summary>
+        </member>
+        <member name="P:GCL.Base.ClassTypeCounter`1.index">
+            <summary>
+            某个实例的index序号,从0开始
+            </summary>
+        </member>
+        <member name="T:GCL.Base.ClassType`2">
+            <summary>
+            类型归类基类
+            </summary>
+        </member>
+        <member name="M:GCL.Base.ClassType`2.GetClassType">
+            <summary>
+            获得自身类型值
+            </summary>
+        </member>
+        <member name="M:GCL.Base.ClassType`2.GetTypeCount">
+            <summary>
+            获得当前TCounter类型的数量
+            </summary> 
+        </member>
+        <member name="T:GCL.Base.ParamString">
+            <summary>
+            <para>支持参数的字符串</para>
+            <para>写法:参数用"{{ }}"双大括号括住</para>
+            <para>通过 SetString 方法设置源字符串</para>
+            <para>通过 SetParam 方法设置参数</para>
+            <para>通过 ToString 方法获得最终结果</para>
+            </summary>
+        </member>
+        <member name="M:GCL.Base.ParamString.SetString(System.String)">
+            <summary>
+            设置文本内容
+            </summary>
+        </member>
+        <member name="M:GCL.Base.ParamString.GetSrc">
+            <summary>
+            获取源字符串
+            </summary>
+        </member>
+        <member name="M:GCL.Base.ParamString.SetParam(System.String,System.Object)">
+            <summary>
+            设置参数替换的内容
+            </summary>
+        </member>
+        <member name="M:GCL.Base.ParamString.GetParam(System.String)">
+            <summary>
+            获得已设置的参数内容
+            </summary>
+        </member>
+        <member name="M:GCL.Base.ParamString.ToString">
+            <summary>
+            获得最终字符串
+            </summary>
+        </member>
+        <member name="T:GCL.Base.ByteTool">
+            <summary>
+            Byte工具
+            </summary>
+        </member>
+        <member name="M:GCL.Base.ByteTool.Concat(System.Byte[],System.Byte[])">
+            <summary>
+            拼接两个byte数据
+            </summary>
+        </member>
+        <member name="M:GCL.Base.ByteTool.Cut(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            截取data数据的start到end部分
+            </summary>
+        </member>
+        <member name="M:GCL.Base.ByteTool.PackSizeToHead(System.Byte[])">
+            <summary>
+            <para>压包整个数据的大小到包头</para>
+            <para>在数据头加入此数据的size大小</para>
+            </summary>
+        </member>
+        <member name="M:GCL.Base.ByteTool.Pack(System.Byte[],System.Int32)">
+            <summary>
+            <para>压包一个整型数值到包头</para>
+            <para>在data数据头插入一个int数值</para>
+            </summary>
+        </member>
+        <member name="M:GCL.Base.ByteTool.UnpackFromHead(System.Byte[])">
+            <summary>
+            <para>解包方法</para>
+            <para>从data数据中截取前4个字节的int数值和之后的所有数据</para>
+            </summary>
+        </member>
+    </members>
+</doc>
