@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{047EAF96-45ED-4F78-A267-6E3D59326FFD}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="_GenerateAll/Program.cs">
+    <Files>
+      <File FileName="Base/src/ClassType.cs" Line="1" Column="1" />
+      <File FileName="Base/src/GameDate.cs" Line="18" Column="20" />
+      <File FileName="Base/src/ParamString.cs" />
+      <File FileName="Base/src/RandomTool.cs" />
+      <File FileName="Base/src/ByteTool.cs" />
+      <File FileName="Serialization/src/XMLTool.cs" Line="107" Column="2" />
+      <File FileName="Serialization/src/CloneTool.cs" Line="7" Column="1" />
+      <File FileName="Serialization/ThirdParty/SimpleEncryption/AES.cs" Line="14" Column="27" />
+      <File FileName="_GenerateAll/Program.cs" Line="9" Column="47" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GameCommonLibrary" expanded="True">
+            <Node name="_GenerateAll" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.__GenerateAll FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>GameCommonLibrary/GameCommonLibrary.csproj</String>
+    <String>Tool/Tool.csproj</String>
+    <String>String/String.csproj</String>
+  </DisabledProjects>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
