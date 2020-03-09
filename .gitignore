@@ -2,3 +2,5 @@
 */obj
 
 *.meta
+.vs
+.vscode
