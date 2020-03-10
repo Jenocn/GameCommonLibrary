@@ -4,8 +4,21 @@
 */
 
 using System.Linq;
+using System.Text;
 
 namespace GCL.Base {
+
+	/// <summary>
+	/// 编码类型
+	/// </summary>
+	public enum EncodingType {
+		Default = 0,
+		UTF8,
+		GBK,
+		GB18030,
+		GB2312,
+		ASCII,
+	}
 
 	/// <summary>
 	/// Byte工具
@@ -63,6 +76,25 @@ namespace GCL.Base {
 			var key = System.BitConverter.ToInt32(data, 0);
 			var retData = Cut(data, 4, data.Length);
 			return new System.Tuple<int, byte[]>(key, retData);
+		}
+
+		/// <summary>
+		/// <para>将字符串转换为byte[]</para>
+		/// </summary>
+		public static byte[] GetBytes(string s, EncodingType encoding = EncodingType.UTF8) {
+			switch (encoding) {
+			case EncodingType.Default:
+				return Encoding.Default.GetBytes(s);
+			case EncodingType.GB18030:
+				return Encoding.GetEncoding("GB18030").GetBytes(s);
+			case EncodingType.GB2312:
+				return Encoding.GetEncoding("GB2312").GetBytes(s);
+			case EncodingType.GBK:
+				return Encoding.GetEncoding("GBK").GetBytes(s);
+			case EncodingType.ASCII:
+				return Encoding.ASCII.GetBytes(s);
+			}
+			return Encoding.UTF8.GetBytes(s);
 		}
 	}
 }
