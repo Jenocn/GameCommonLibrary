@@ -25,7 +25,7 @@ namespace GCL.Serialization {
 		}
 
 		public static string EncodeBase64(string value) {
-			return B64R.Encode(value);
+			return Base64.Encode(value);
 		}
 
 		public static string DecodeBase64(string value) {
@@ -33,7 +33,7 @@ namespace GCL.Serialization {
 		}
 
 		public static string EncodeB64R(string value) {
-			return Base64.Encode(value);
+			return B64R.Encode(value);
 		}
 
 		public static string DecodeB64R(string value) {
