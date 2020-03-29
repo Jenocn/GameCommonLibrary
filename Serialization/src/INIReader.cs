@@ -63,6 +63,7 @@ namespace GCL.Serialization {
 			Dictionary<string, string> sessionDict = null;
 			if (!prototype.TryGetValue(session, out sessionDict)) {
 				sessionDict = new Dictionary<string, string>();
+				prototype.Add(session, sessionDict);
 			}
 			sessionDict[key] = value.ToString();
 		}
