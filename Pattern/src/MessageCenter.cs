@@ -10,6 +10,11 @@ namespace GCL.Pattern {
 	/// </summary>
 	public static class MessageCenter {
 		private static MessageDispatcher _messageDispatcher = new MessageDispatcher();
+		public static MessageDispatcher messageDispatcher { get { return _messageDispatcher; } }
+
+		public static MessageDispatcher GetMessageDispatcher() {
+			return _messageDispatcher;
+		}
 
 		/// <summary>
 		/// 添加消息监听者
