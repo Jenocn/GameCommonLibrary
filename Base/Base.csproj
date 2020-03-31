@@ -39,6 +39,7 @@
     <Compile Include="src\ParamString.cs" />
     <Compile Include="src\ByteTool.cs" />
     <Compile Include="src\PathTool.cs" />
+    <Compile Include="src\Utility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
