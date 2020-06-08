@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>GCL</RootNamespace>
+    <AssemblyName>GCL</AssemblyName>
+  </PropertyGroup>
+
+</Project>
