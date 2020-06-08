@@ -1,6 +1,5 @@
 ## GameCommonLibrary(GCL)  
 针对游戏开发的C#通用方法库
-基于 .Net Framework 4.5  
 
 ### `GCL.Base`  
 基础库  
