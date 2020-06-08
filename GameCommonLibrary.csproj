@@ -14,11 +14,8 @@
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Release\GCL.xml</DocumentationFile>
-    <ConsolePause>false</ConsolePause>
   </PropertyGroup>
 
 </Project>

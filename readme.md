@@ -1,6 +1,11 @@
 ## GameCommonLibrary(GCL)  
 针对游戏开发的C#通用方法库
 
+最新版本:
+-|-
+1.1.0|[GCL.zip](https://jenocn.github.io/GCL/GCL.zip)
+
+
 ### `GCL.Base`  
 基础库  
 * `ByteTool` 字节数据工具,对字节数据的处理  
