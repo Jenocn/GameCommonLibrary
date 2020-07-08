@@ -13,11 +13,11 @@ namespace GCL.Base {
 			string ret = "";
 			foreach (var item in paths) {
 				var path = Normalize(item);
-				if (string.IsNullOrEmpty(ret)) {
-					ret = path;
+				if (string.IsNullOrEmpty(path)) {
 					continue;
 				}
-				if (string.IsNullOrEmpty(path)) {
+				if (string.IsNullOrEmpty(ret)) {
+					ret = path;
 					continue;
 				}
 				if (!_IsSepartor(path[0])) {
@@ -44,8 +44,11 @@ namespace GCL.Base {
 			foreach (var item in arr) {
 				if (item == "..") {
 					if (tempStack.Count > 0) {
-						tempStack.Pop();
-						continue;
+						var peekItem = tempStack.Peek();
+						if (peekItem != "..") {
+							tempStack.Pop();
+							continue;
+						}
 					} else {
 						if (bFirstSepartor) {
 							return "";
@@ -71,7 +74,7 @@ namespace GCL.Base {
 			if (bFirstSepartor) {
 				ret = '/' + ret;
 			}
-			
+
 			return ret;
 		}
 
