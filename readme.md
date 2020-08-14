@@ -1,9 +1,8 @@
 ## GameCommonLibrary(GCL)  
 针对游戏开发的C#通用方法库
 
-最新版本|链接
--|-
-1.1.0|[GCL.zip](https://jenocn.github.io/GCL/GCL.zip)
+### 发布页
+[https://github.com/Jenocn/GameCommonLibrary/releases](https://github.com/Jenocn/GameCommonLibrary/releases)
 
 
 ### `GCL.Base`  
