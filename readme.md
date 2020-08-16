@@ -26,6 +26,7 @@
 * `MessageCenter` 消息中心,一个全局的消息派发器  
 * `MessageDispatcher` 消息派发器类  
 * `MessageListener` 消息监听器接口和基类定义  
+* `SimpleNotify` 单一消息通知器
 * `Singleton` 单例  
 
 ### `GCL.Serialization`  
