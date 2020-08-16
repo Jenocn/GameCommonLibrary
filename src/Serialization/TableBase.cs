@@ -42,9 +42,10 @@ namespace GCL.Serialization {
 		/// 获取元素
 		/// </summary>
 		public virtual TElement GetElement(TKey key) {
-			TElement value = null;
-			_dataDict.TryGetValue(key, out value);
-			return value;
+			if (_dataDict.TryGetValue(key, out var value)) {
+				return value;
+			}
+			return null;
 		}
 
 		/// <summary>

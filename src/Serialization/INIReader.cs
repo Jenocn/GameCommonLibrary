@@ -26,10 +26,8 @@ namespace GCL.Serialization {
 		/// 获取指定session下的key配置
 		/// </summary>
 		public string GetString(string session, string key, string defaultValue = "") {
-			string ret = defaultValue;
-			Dictionary<string, string> sessionDict = null;
-			if (prototype.TryGetValue(session, out sessionDict)) {
-				if (sessionDict.TryGetValue(key, out ret)) {
+			if (prototype.TryGetValue(session, out var sessionDict)) {
+				if (sessionDict.TryGetValue(key, out var ret)) {
 					return ret;
 				}
 			}
@@ -60,8 +58,7 @@ namespace GCL.Serialization {
 		/// 添加或修改配置
 		/// </summary>
 		public void Set(string session, string key, object value) {
-			Dictionary<string, string> sessionDict = null;
-			if (!prototype.TryGetValue(session, out sessionDict)) {
+			if (!prototype.TryGetValue(session, out var sessionDict)) {
 				sessionDict = new Dictionary<string, string>();
 				prototype.Add(session, sessionDict);
 			}

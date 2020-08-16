@@ -25,7 +25,7 @@ namespace GCL.Base {
 		private Dictionary<string, string> _paramDict = new Dictionary<string, string>();
 		private bool _bDirty = false;
 
-		public ParamString() { }
+		public ParamString() {}
 
 		public ParamString(string src) {
 			_src = src;
@@ -64,9 +64,10 @@ namespace GCL.Base {
 		/// 获得已设置的参数内容
 		/// </summary>
 		public object GetParam(string key) {
-			string value = null;
-			_paramDict.TryGetValue(key, out value);
-			return value;
+			if (_paramDict.TryGetValue(key, out var value)) {
+				return value;
+			}
+			return null;
 		}
 
 		/// <summary>
@@ -95,8 +96,7 @@ namespace GCL.Base {
 					indexR += PARAM_SIGN_R_LEN;
 				} else {
 					var key = ret.Substring(indexL + PARAM_SIGN_L_LEN, indexR - indexL - PARAM_SIGN_L_LEN);
-					string value = "";
-					if (_paramDict.TryGetValue(key.Trim(), out value)) {
+					if (_paramDict.TryGetValue(key.Trim(), out var value)) {
 						string oldValue = PARAM_SIGN_L + key + PARAM_SIGN_R;
 						if (oldValue == value) {
 							indexR += PARAM_SIGN_R_LEN;

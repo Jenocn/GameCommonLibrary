@@ -37,8 +37,7 @@ namespace GCL.Pattern {
 		/// 获取指定名称的自定义消息派发器
 		/// </summary>
 		public static MessageDispatcher GetCustomDispatcher(string name) {
-			MessageDispatcher ret = null;
-			if (!_dispathcerDict.TryGetValue(name, out ret)) {
+			if (!_dispathcerDict.TryGetValue(name, out var ret)) {
 				ret = new MessageDispatcher();
 				_dispathcerDict.Add(name, ret);
 			}
