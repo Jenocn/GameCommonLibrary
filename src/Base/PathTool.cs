@@ -78,6 +78,14 @@ namespace GCL.Base {
 			return ret;
 		}
 
+		public static string Extname(string filename) {
+			var pos = filename.LastIndexOf('.');
+			if (pos != -1) {
+				return filename.Substring(pos);
+			}
+			return "";
+		}
+
 		private static bool _IsSepartor(char ch) {
 			return ch == '/' || ch == '\\';
 		}
