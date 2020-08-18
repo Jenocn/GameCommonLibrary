@@ -8,17 +8,17 @@ using System.Collections.Generic;
 namespace GCL.Pattern {
 	public class SimpleNotify<TMessage> {
 		private Dictionary<int, System.Action<TMessage>> _listeners = new Dictionary<int, System.Action<TMessage>>();
-		bool AddListener(object sender, System.Action<TMessage> func) {
+		public bool AddListener(object sender, System.Action<TMessage> func) {
 			if (!_listeners.ContainsKey(sender.GetHashCode())) {
 				_listeners.Add(sender.GetHashCode(), func);
 				return true;
 			}
 			return false;
 		}
-		bool RemoveListener(object sender) {
+		public bool RemoveListener(object sender) {
 			return _listeners.Remove(sender.GetHashCode());
 		}
-		void Send(TMessage msg) {
+		public void Send(TMessage msg) {
 			foreach (var item in _listeners) {
 				item.Value.Invoke(msg);
 			}
@@ -27,17 +27,17 @@ namespace GCL.Pattern {
 
 	public class SimpleNotifyVoid {
 		private Dictionary<int, System.Action> _listeners = new Dictionary<int, System.Action>();
-		bool AddListener(object sender, System.Action func) {
+		public bool AddListener(object sender, System.Action func) {
 			if (!_listeners.ContainsKey(sender.GetHashCode())) {
 				_listeners.Add(sender.GetHashCode(), func);
 				return true;
 			}
 			return false;
 		}
-		bool RemoveListener(object sender) {
+		public bool RemoveListener(object sender) {
 			return _listeners.Remove(sender.GetHashCode());
 		}
-		void Send() {
+		public void Send() {
 			foreach (var item in _listeners) {
 				item.Value.Invoke();
 			}
