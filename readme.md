@@ -13,6 +13,8 @@
 * `ParamString` 支持参数替换的字符串  
 * `RandomTool` 随机数工具  
 * `TypeTool` 类型工具  
+* `MathTool` 数学工具
+* `Utility` 其他工具
 
 ### `GCL.Net`  
 网络相关方法  
