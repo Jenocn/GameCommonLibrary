@@ -86,6 +86,29 @@ namespace GCL.Base {
 			return "";
 		}
 
+		/// <summary>
+		/// 强制连接,仅处理连接处的格式问题
+		/// </summary>
+		public static string ForceConcat(params string[] dirs) {
+			string ret = "";
+			for (var i = 0; i < dirs.Length; ++i) {
+				var temp = dirs[i].Trim();
+				if (temp.Length > 0) {
+					if (_IsSepartor(temp[0])) {
+						temp = temp.Substring(1);
+					}
+					if (!string.IsNullOrEmpty(temp)) {
+						var len = ret.Length;
+						if ((len > 0) && (!_IsSepartor(ret[len - 1]))) {
+							ret += "/";
+						}
+						ret += temp;
+					}
+				}
+			}
+			return ret;
+		}
+
 		private static bool _IsSepartor(char ch) {
 			return ch == '/' || ch == '\\';
 		}
