@@ -6,10 +6,18 @@ namespace GCL.Base {
 	/// 路径工具
 	/// </summary>
 	public static class PathTool {
+
 		/// <summary>
-		/// 组合一组路径
+		/// 连接多个路径
 		/// </summary>
-		public static string Join(params string[] paths) {
+		public static string Join(params string[] dirs) {
+			return System.IO.Path.Combine(dirs).Replace('\\', '/');
+		}
+
+		/// <summary>
+		/// 组合一组路径,并且标准化输出
+		/// </summary>
+		public static string NormalizeJoin(params string[] paths) {
 			string ret = "";
 			foreach (var item in paths) {
 				var path = Normalize(item);
@@ -29,7 +37,7 @@ namespace GCL.Base {
 		}
 
 		/// <summary>
-		/// 标准化一个路径,如果路径不存在则返回false
+		/// 标准化一个路径,如果路径不存在则返回空
 		/// </summary>
 		public static string Normalize(string path) {
 			if (string.IsNullOrEmpty(path)) { return ""; }
@@ -84,13 +92,6 @@ namespace GCL.Base {
 				return filename.Substring(pos);
 			}
 			return "";
-		}
-
-		/// <summary>
-		/// 强制连接,仅处理连接处的格式问题
-		/// </summary>
-		public static string ForceConcat(params string[] dirs) {
-			return System.IO.Path.Combine(dirs);
 		}
 
 		private static bool _IsSepartor(char ch) {
