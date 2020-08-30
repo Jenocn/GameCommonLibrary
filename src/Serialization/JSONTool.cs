@@ -128,6 +128,8 @@ namespace GCL.Serialization {
 			if (_RefToken(root, key, out var token)) {
 				if (token.Type == JTokenType.Float) {
 					return token.Value<float>();
+				} else if (token.Type == JTokenType.Integer) {
+					return (float) token.Value<int>();
 				}
 			}
 			return def;
@@ -177,6 +179,8 @@ namespace GCL.Serialization {
 			if (_RefToken(root, index, out var token)) {
 				if (token.Type == JTokenType.Float) {
 					return token.Value<float>();
+				} else if (token.Type == JTokenType.Integer) {
+					return (float) token.Value<int>();
 				}
 			}
 			return def;
