@@ -18,6 +18,9 @@ namespace GCL.Pattern {
 		public bool RemoveListener(object sender) {
 			return _listeners.Remove(sender.GetHashCode());
 		}
+		public void RemoveAllListeners() {
+			_listeners.Clear();
+		}
 		public void Send(TMessage msg) {
 			foreach (var item in _listeners) {
 				item.Value.Invoke(msg);
@@ -36,6 +39,9 @@ namespace GCL.Pattern {
 		}
 		public bool RemoveListener(object sender) {
 			return _listeners.Remove(sender.GetHashCode());
+		}
+		public void RemoveAllListeners() {
+			_listeners.Clear();
 		}
 		public void Send() {
 			foreach (var item in _listeners) {
