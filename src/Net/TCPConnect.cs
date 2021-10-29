@@ -21,7 +21,7 @@ namespace GCL.Net {
 		private byte[] _preBuffer = null;
 		private byte[] _buffer = new byte[1024];
 
-		private Dictionary<int, System.Action<byte[]>> _lis = new Dictionary<int, System.Action<byte[]>>();
+		private Dictionary<object, System.Action<byte[]>> _lis = new Dictionary<object, System.Action<byte[]>>();
 
 		/// <summary>
 		/// 地址和端口号
@@ -65,15 +65,15 @@ namespace GCL.Net {
 		/// <summary>
 		/// 添加消息监听者
 		/// </summary>
-		public void AddListener(object obj, System.Action<byte[]> lis) {
-			_lis.Add(obj.GetHashCode(), lis);
+		public void AddListener(object sender, System.Action<byte[]> lis) {
+			_lis.Add(sender, lis);
 		}
 
 		/// <summary>
 		/// 删除监听者
 		/// </summary>
-		public void RemoveListener(object obj, System.Action<byte[]> lis) {
-			_lis.Remove(obj.GetHashCode());
+		public void RemoveListener(object sender, System.Action<byte[]> lis) {
+			_lis.Remove(sender);
 		}
 
 		/// <summary>
