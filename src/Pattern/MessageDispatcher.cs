@@ -13,6 +13,9 @@ namespace GCL.Pattern {
 	public class MessageDispatcher {
 		private Dictionary<string, IMessageListener> _listenerDict = new Dictionary<string, IMessageListener>();
 		private Dictionary<bool, LinkedList<IMessage>> _messageQueue = new Dictionary<bool, LinkedList<IMessage>>();
+
+		private LinkedList<System.Tuple<bool, string, IMessageListener>> _safeQueue = new LinkedList<System.Tuple<bool, string, IMessageListener>>();
+		private bool _bSafeMode = false;
 		private bool _activeQueueSign = false;
 
 		public MessageDispatcher() {
@@ -24,22 +27,31 @@ namespace GCL.Pattern {
 		/// 添加消息监听者
 		/// </summary>
 		public void AddListener<T>(object obj, System.Action<T> func) where T : MessageBase<T> {
-			if (func == null) {
-				return;
+			if (func != null) {
+				var key = _GetKey<T>(obj);
+				if (!_listenerDict.ContainsKey(key)) {
+					var listener = new MessageListener<T>(func);
+					if (_bSafeMode) {
+						_safeQueue.AddLast(new System.Tuple<bool, string, IMessageListener>(true, key, listener));
+					} else {
+						_listenerDict.Add(key, listener);
+					}
+				}
 			}
-			var key = _GetKey<T>(obj);
-			if (_listenerDict.ContainsKey(key)) {
-				return;
-			}
-			var listener = new MessageListener<T>(func);
-			_listenerDict.Add(key, listener);
 		}
 
 		/// <summary>
 		/// 删除监听者
 		/// </summary>
 		public void RemoveListener<T>(object obj) where T : MessageBase<T> {
-			_listenerDict.Remove(_GetKey<T>(obj));
+			var key = _GetKey<T>(obj);
+			if (_bSafeMode) {
+				if (_listenerDict.ContainsKey(key)) {
+					_safeQueue.AddLast(new System.Tuple<bool, string, IMessageListener>(false, key, null));
+				}
+			} else {
+				_listenerDict.Remove(key);
+			}
 		}
 
 		/// <summary>
@@ -48,11 +60,14 @@ namespace GCL.Pattern {
 		public void Send(IMessage message) {
 			if (message == null) { return; }
 			var messageID = message.GetMessageID();
+			_bSafeMode = true;
 			foreach (var item in _listenerDict) {
 				if (item.Value.GetMessageID() == messageID) {
 					item.Value.Invoke(message);
 				}
 			}
+			_bSafeMode = false;
+			_ExecuteQueue();
 		}
 
 		/// <summary>
@@ -83,6 +98,22 @@ namespace GCL.Pattern {
 			_listenerDict.Clear();
 			_messageQueue[true].Clear();
 			_messageQueue[false].Clear();
+		}
+
+		private void _ExecuteQueue() {
+			var p = _safeQueue.First;
+			while (p != null) {
+				var data = p.Value;
+				if (data.Item1) {
+					if (!_listenerDict.ContainsKey(data.Item2)) {
+						_listenerDict.Add(data.Item2, data.Item3);
+					}
+				} else {
+					_listenerDict.Remove(data.Item2);
+				}
+				p = p.Next;
+			}
+			_safeQueue.Clear();
 		}
 
 		private string _GetKey<T>(object obj) where T : MessageBase<T> {
