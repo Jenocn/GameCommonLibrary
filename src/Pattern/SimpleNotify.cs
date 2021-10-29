@@ -7,16 +7,16 @@ using System.Collections.Generic;
 
 namespace GCL.Pattern {
 	public class SimpleNotify<TMessage> {
-		private Dictionary<int, System.Action<TMessage>> _listeners = new Dictionary<int, System.Action<TMessage>>();
+		private Dictionary<object, System.Action<TMessage>> _listeners = new Dictionary<object, System.Action<TMessage>>();
 		public bool AddListener(object sender, System.Action<TMessage> func) {
-			if (!_listeners.ContainsKey(sender.GetHashCode())) {
-				_listeners.Add(sender.GetHashCode(), func);
+			if (!_listeners.ContainsKey(sender)) {
+				_listeners.Add(sender, func);
 				return true;
 			}
 			return false;
 		}
 		public bool RemoveListener(object sender) {
-			return _listeners.Remove(sender.GetHashCode());
+			return _listeners.Remove(sender);
 		}
 		public void RemoveAllListeners() {
 			_listeners.Clear();
@@ -29,16 +29,16 @@ namespace GCL.Pattern {
 	};
 
 	public class SimpleNotifyVoid {
-		private Dictionary<int, System.Action> _listeners = new Dictionary<int, System.Action>();
+		private Dictionary<object, System.Action> _listeners = new Dictionary<object, System.Action>();
 		public bool AddListener(object sender, System.Action func) {
-			if (!_listeners.ContainsKey(sender.GetHashCode())) {
-				_listeners.Add(sender.GetHashCode(), func);
+			if (!_listeners.ContainsKey(sender)) {
+				_listeners.Add(sender, func);
 				return true;
 			}
 			return false;
 		}
 		public bool RemoveListener(object sender) {
-			return _listeners.Remove(sender.GetHashCode());
+			return _listeners.Remove(sender);
 		}
 		public void RemoveAllListeners() {
 			_listeners.Clear();
