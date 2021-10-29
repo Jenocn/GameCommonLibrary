@@ -11,11 +11,13 @@ namespace GCL.Pattern {
 	/// 消息派发器
 	/// </summary>
 	public class MessageDispatcher {
-		private Dictionary<string, IMessageListener> _listenerDict = new Dictionary<string, IMessageListener>();
+		private Dictionary<int, Dictionary<object, IMessageListener>> _listenerDict = new Dictionary<int, Dictionary<object, IMessageListener>>();
 		private Dictionary<bool, LinkedList<IMessage>> _messageQueue = new Dictionary<bool, LinkedList<IMessage>>();
 
-		private LinkedList<System.Tuple<bool, string, IMessageListener>> _safeQueue = new LinkedList<System.Tuple<bool, string, IMessageListener>>();
-		private bool _bSafeMode = false;
+		// Tuple<添加/删除, MessageID, 对象, 监听器>
+		private LinkedList<System.Tuple<bool, int, object, IMessageListener>> _safeListenerQueue = new LinkedList<System.Tuple<bool, int, object, IMessageListener>>();
+
+		private int _lockCount = 0;
 		private bool _activeQueueSign = false;
 
 		public MessageDispatcher() {
@@ -28,13 +30,18 @@ namespace GCL.Pattern {
 		/// </summary>
 		public void AddListener<T>(object obj, System.Action<T> func) where T : MessageBase<T> {
 			if (func != null) {
-				var key = _GetKey<T>(obj);
-				if (!_listenerDict.ContainsKey(key)) {
+				var tType = MessageBase<T>.GetClassType();
+				if (!_listenerDict.TryGetValue(tType, out var dict)) {
+					dict = new Dictionary<object, IMessageListener>();
+					_listenerDict.Add(tType, dict);
+				}
+
+				if (!dict.ContainsKey(obj)) {
 					var listener = new MessageListener<T>(func);
-					if (_bSafeMode) {
-						_safeQueue.AddLast(new System.Tuple<bool, string, IMessageListener>(true, key, listener));
+					if (IsSafeLocked()) {
+						_safeListenerQueue.AddLast(new System.Tuple<bool, int, object, IMessageListener>(true, tType, obj, listener));
 					} else {
-						_listenerDict.Add(key, listener);
+						dict.Add(obj, listener);
 					}
 				}
 			}
@@ -44,13 +51,15 @@ namespace GCL.Pattern {
 		/// 删除监听者
 		/// </summary>
 		public void RemoveListener<T>(object obj) where T : MessageBase<T> {
-			var key = _GetKey<T>(obj);
-			if (_bSafeMode) {
-				if (_listenerDict.ContainsKey(key)) {
-					_safeQueue.AddLast(new System.Tuple<bool, string, IMessageListener>(false, key, null));
+			var tType = MessageBase<T>.GetClassType();
+			if (_listenerDict.TryGetValue(tType, out var dict)) {
+				if (IsSafeLocked()) {
+					if (dict.ContainsKey(obj)) {
+						_safeListenerQueue.AddLast(new System.Tuple<bool, int, object, IMessageListener>(false, tType, obj, null));
+					}
+				} else {
+					dict.Remove(obj);
 				}
-			} else {
-				_listenerDict.Remove(key);
 			}
 		}
 
@@ -59,15 +68,18 @@ namespace GCL.Pattern {
 		/// </summary>
 		public void Send(IMessage message) {
 			if (message == null) { return; }
-			var messageID = message.GetMessageID();
-			_bSafeMode = true;
-			foreach (var item in _listenerDict) {
-				if (item.Value.GetMessageID() == messageID) {
+
+			if (_listenerDict.TryGetValue(message.GetMessageID(), out var dict)) {
+				_SafeLock();
+				foreach (var item in dict) {
 					item.Value.Invoke(message);
 				}
+				_SafeUnlock();
+
+				if (!IsSafeLocked()) {
+					_ExecuteSafeQueue();
+				}
 			}
-			_bSafeMode = false;
-			_ExecuteQueue();
 		}
 
 		/// <summary>
@@ -99,25 +111,37 @@ namespace GCL.Pattern {
 			_messageQueue[true].Clear();
 			_messageQueue[false].Clear();
 		}
+		public bool IsSafeLocked() {
+			return _lockCount > 0;
+		}
 
-		private void _ExecuteQueue() {
-			var p = _safeQueue.First;
+		private void _SafeLock() {
+			++_lockCount;
+		}
+		private void _SafeUnlock() {
+			--_lockCount;
+		}
+
+		private void _ExecuteSafeQueue() {
+			var p = _safeListenerQueue.First;
 			while (p != null) {
 				var data = p.Value;
 				if (data.Item1) {
-					if (!_listenerDict.ContainsKey(data.Item2)) {
-						_listenerDict.Add(data.Item2, data.Item3);
+					if (!_listenerDict.TryGetValue(data.Item2, out var dict)) {
+						dict = new Dictionary<object, IMessageListener>();
+						_listenerDict.Add(data.Item2, dict);
+					}
+					if (!dict.ContainsKey(data.Item3)) {
+						dict.Add(data.Item3, data.Item4);
 					}
 				} else {
-					_listenerDict.Remove(data.Item2);
+					if (_listenerDict.TryGetValue(data.Item2, out var dict)) {
+						dict.Remove(data.Item3);
+					}
 				}
 				p = p.Next;
 			}
-			_safeQueue.Clear();
-		}
-
-		private string _GetKey<T>(object obj) where T : MessageBase<T> {
-			return typeof(T).ToString() + "_" + obj.GetHashCode();
+			_safeListenerQueue.Clear();
 		}
 	}
 }
