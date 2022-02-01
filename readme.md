@@ -1,20 +1,17 @@
 ## GameCommonLibrary(GCL)  
 针对游戏开发的C#通用方法库
 
-### 发布页
-[https://github.com/Jenocn/GameCommonLibrary/releases](https://github.com/Jenocn/GameCommonLibrary/releases)
-
-
 ### `GCL.Base`  
 基础库  
 * `ByteTool` 字节数据工具,对字节数据的处理  
 * `ClassType` 类类型,类型计数,类型管理  
 * `GameDate` 日期类,处理日期  
+* `MathTool` 数学工具
 * `ParamString` 支持参数替换的字符串  
+* `PathTool` 文件名路径工具 
 * `RandomTool` 随机数工具  
 * `TypeTool` 类型工具  
-* `MathTool` 数学工具
-* `Utility` 其他工具
+* `Utility` 其他工具 
 
 ### `GCL.Net`  
 网络相关方法  
