@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
-namespace GCL.Serialization {
+namespace GCL {
 
 	/// <summary>
 	/// XML工具

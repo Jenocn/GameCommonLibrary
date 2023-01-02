@@ -5,7 +5,7 @@
 
 using System.Collections.Generic;
 
-namespace GCL.Serialization {
+namespace GCL {
 
 	/// <summary>
 	/// 表容器

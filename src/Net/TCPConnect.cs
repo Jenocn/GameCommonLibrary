@@ -5,9 +5,9 @@
 
 using System.Collections.Generic;
 using System.Net.Sockets;
-using GCL.Base;
+using GCL;
 
-namespace GCL.Net {
+namespace GCL {
 	/// <summary>
 	/// TCP连接类
 	/// </summary>

@@ -5,7 +5,7 @@
 
 using System.Collections.Generic;
 
-namespace GCL.Pattern {
+namespace GCL {
 	public class SimpleNotify<TMessage> {
 		private Dictionary<object, System.Action<TMessage>> _listeners = new Dictionary<object, System.Action<TMessage>>();
 		public bool AddListener(object sender, System.Action<TMessage> func) {
@@ -49,4 +49,4 @@ namespace GCL.Pattern {
 			}
 		}
 	};
-} // GCL.Pattern
+} // GCL

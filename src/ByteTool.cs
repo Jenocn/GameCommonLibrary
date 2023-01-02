@@ -6,7 +6,7 @@
 using System.Linq;
 using System.Text;
 
-namespace GCL.Base {
+namespace GCL {
 
 	/// <summary>
 	/// 编码类型

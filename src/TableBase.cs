@@ -4,9 +4,9 @@
 */
 
 using System.Collections.Generic;
-using GCL.Pattern;
+using GCL;
 
-namespace GCL.Serialization {
+namespace GCL {
 
 	/// <summary>
 	/// 表接口
@@ -23,7 +23,7 @@ namespace GCL.Serialization {
 	/// <typeparam name="TClass">表类型</typeparam>
 	/// <typeparam name="TKey">键类型</typeparam>
 	/// <typeparam name="TElement">元素类型</typeparam>
-	public abstract class TableBase<TClass, TKey, TElement> : Singleton<TClass>, ITable where TClass : class, new() where TElement : class {
+	public abstract class TableBase<TClass, TKey, TElement> : ITable where TClass : class, new() where TElement : class {
 
 		private Dictionary<TKey, TElement> _dataDict = new Dictionary<TKey, TElement>();
 

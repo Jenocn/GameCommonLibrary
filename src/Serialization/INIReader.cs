@@ -4,9 +4,9 @@
 */
 
 using System.Collections.Generic;
-using GCL.Base;
+using GCL;
 
-namespace GCL.Serialization {
+namespace GCL {
 
 	/// <summary>
 	/// INI配置读取器

@@ -3,7 +3,7 @@
 	https://jenocn.github.io/
 */
 
-namespace GCL.Base {
+namespace GCL {
 
 	/// <summary>
 	/// 类计数器

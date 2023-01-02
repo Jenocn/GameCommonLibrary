@@ -5,7 +5,7 @@
 
 using System.Collections.Generic;
 
-namespace GCL.Pattern {
+namespace GCL {
 
 	/// <summary>
 	/// 消息派发器

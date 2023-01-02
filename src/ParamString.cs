@@ -5,7 +5,7 @@
 
 using System.Collections.Generic;
 
-namespace GCL.Base {
+namespace GCL {
 	/// <summary>
 	/// <para>支持参数的字符串</para>
 	/// <para>写法:参数用"{{ }}"双大括号括住</para>

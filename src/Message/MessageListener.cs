@@ -3,7 +3,7 @@
 	https://jenocn.github.io/
 */
 
-namespace GCL.Pattern {
+namespace GCL {
 	/// <summary>
 	/// 消息监听者接口
 	/// </summary>

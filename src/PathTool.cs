@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace GCL.Base {
+namespace GCL {
 
 	/// <summary>
 	/// 路径工具

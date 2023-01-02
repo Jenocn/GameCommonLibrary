@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace GCL.Serialization {
+namespace GCL {
 
 	/// <summary>
 	/// JSON工具

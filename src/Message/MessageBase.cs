@@ -3,9 +3,9 @@
 	https://jenocn.github.io/
 */
 
-using GCL.Base;
+using GCL;
 
-namespace GCL.Pattern {
+namespace GCL {
 	/// <summary>
 	/// 消息类型接口
 	/// </summary>

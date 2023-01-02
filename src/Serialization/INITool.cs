@@ -6,7 +6,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GCL.Serialization {
+namespace GCL {
 
 	/// <summary>
 	/// INI工具类

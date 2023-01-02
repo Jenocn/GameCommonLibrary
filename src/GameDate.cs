@@ -5,7 +5,7 @@
 
 using System.Collections.Generic;
 
-namespace GCL.Base {
+namespace GCL {
 	/// <summary>
 	/// 日期类
 	/// </summary>
